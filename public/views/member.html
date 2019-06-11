@@ -1,0 +1,33 @@
+<md-card>
+	<md-card-title>
+		<md-toolbar class="noBack">
+			<div class="md-toolbar-tools searchBar" md-colors="{background: 'accent-700'}" layout="row">
+				<md-icon md-svg-src="img/icons/search.svg" flex="10"></md-icon>
+				<form name="filterMember" flex>
+					<input ng-model="memberFilter" class="merged" placeholder="Type here..." />
+				</form>
+				<md-icon md-svg-src="img/icons/clear.svg" ng-click="memberFilter=''" flex="10"></md-icon>
+			</div>
+		</md-toolbar>
+	</md-card-title>
+	<md-card-content>
+		<md-list>
+			<md-list-item class="md-3-line" ng-repeat="member in allMembers | filter: memberFilter" ng-click="i=1">
+				<div layout="column" class="md-list-item-text">
+					<h2 md-colors="{color: 'primary'}"> {{member.name}} </h2>
+					<div layout="column" layout-gt-xs="row" layout-align="space-around center">
+						<h4 flex="20" flex-gt-sm> {{member.political_party}} | {{member.house}}</h4>
+						<div layout="row" flex="40">
+							<h4 class="tag" md-colors="{background: 'accent'}"> {{member.position}} since:  {{member.date_elected}} </h4>
+						</div>
+					</div>
+					<p flex> 
+						{{member.email}} <br/>
+						{{member.electorate}} 
+					</p>
+					<span class="date" style="float: right;"> {{member.dated | date: "dd' 'MMM' @ 'hh':'mm' 'a"}} </span>
+				</div>
+			</md-list-item>
+		</md-list>		
+	</md-card-content>
+</md-card>

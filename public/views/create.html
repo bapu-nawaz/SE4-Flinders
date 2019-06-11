@@ -1,0 +1,49 @@
+<div>
+  <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline"> News Content Form </span>
+        <span class="md-subhead"> Don't forget to fillout all the fields </span>
+      </md-card-title-text>
+    </md-card-title>
+
+    <md-card-content>
+      <form name="newsForm" layout="column" layout-align="stretch center">
+        <md-input-container>
+          <label> Title </label>
+          <input ng-model="news.title" />
+        </md-input-container>
+
+        <md-input-container>
+          <label> Author </label>
+          <input ng-model="news.author" />
+        </md-input-container>
+
+        <md-input-container>
+          <label> Content </label>
+          <textarea ng-model="news.content" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+         </md-input-container>
+
+         <h4 class="md-title"> Enter tags for this News </h4>
+         <md-chips
+            ng-model="tags"
+            readonly="false"
+            md-removable="true"
+            placeholder="Enter a tag"
+            delete-button-label="Remove Tag"
+            delete-hint="Press delete to remove tag"
+            secondary-placeholder="+Tag"></md-chips>
+        
+        <h5>
+          Current Date: <span md-colors="{color: 'primary'}">{{now | date:"dd MMM '@' hh':'mm a"}}</span>
+        </h5>
+
+      </form>
+    </md-card-content>
+
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-accent md-raised" ng-click="postData()"> Post </md-button>
+    </md-card-actions>
+
+  </md-card>
+</div>

@@ -1,0 +1,43 @@
+{
+  "member" : [ {
+    "date_elected" : "Mar 17 2018",
+    "electorate" : "Finniss",
+    "email" : "finniss@parliament.sa.gov.au",
+    "house" : "House of Assembly",
+    "name" : "Mr David Basham",
+    "political_party" : "Liberal Party",
+    "position" : "Member"
+  }, {
+    "date_elected" : "Oct 11 1997",
+    "electorate" : "Florey ",
+    "email" : "florey@parliament.sa.gov.au",
+    "house" : "House of Assembly",
+    "name" : "Ms Frances Bedford ",
+    "political_party" : "Liberal Party",
+    "position" : "Member"
+  }, {
+    "date_elected" : "Feb 11 2012",
+    "electorate" : "Ramsay ",
+    "email" : "ramsay@parliament.sa.gov.au",
+    "house" : "House of Assembly",
+    "name" : "Hon Zoe Bettison ",
+    "political_party" : "Liberal Party",
+    "position" : "Member"
+  }, {
+    "date_elected" : "Mar 17 2018",
+    "electorate" : "N/A",
+    "email" : "rconnie.bonaros@parliament.sa.gov.au",
+    "house" : "House of Assembly",
+    "name" : " Hon Connie Bonaros ",
+    "political_party" : "Liberal Party",
+    "position" : "Member"
+  }, {
+    "date_elected" : "Mar 17 2018",
+    "electorate" : "Playford ",
+    "email" : "playford@parliament.sa.gov.au",
+    "house" : "House of Assembly",
+    "name" : " Mr Michael Brown  ",
+    "political_party" : "Liberal Party",
+    "position" : "Member"
+  } ]
+}

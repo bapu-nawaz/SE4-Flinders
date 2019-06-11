@@ -1,0 +1,30 @@
+<div ng-cloak>
+  <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline"> Quick Links </span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      <div>
+        <ul>
+          <li ng-repeat="faq in faqList" ng-click="gotoAnchor(faq.id)"> {{faq.title}} </li>
+        </ul> 
+      </div>
+    </md-card-content>
+  </md-card>
+  
+  <md-card id="anchor{{faq.id}}" ng-repeat="faq in faqList">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-hedline"> {{faq.title}} </span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      <div>
+        {{faq.content}}
+      </div>
+    </md-card-content>
+  </md-card>
+  
+</div>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title> Parliament SA </title>
+	
+	<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+		apiKey: "AIzaSyDEdtEFoB7Vy8Yw3zl3DTeN5Mc7PJ-GFxY",
+	  authDomain: "se4-project.firebaseapp.com",
+	  databaseURL: "https://se4-project.firebaseio.com",
+	  projectId: "se4-project",
+	  storageBucket: "se4-project.appspot.com",
+	  messagingSenderId: "1033279998750",
+	  appId: "1:1033279998750:web:f5b23618fd73dc01"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+	<link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body ng-app="parliament">
+	<div layout="column" style="height:100%;" ng-cloak ng-controller="baseCTRL">
+	  <section layout="row" flex>
+	    <md-sidenav
+	        class="md-sidenav-left"
+	        md-component-id="left"
+	        md-is-locked-open="$mdMedia('gt-md')"
+	        md-whiteframe="4">
+
+	      <md-toolbar>
+	        <h1 class="md-toolbar-tools">Navigation</h1>
+	      </md-toolbar>
+	      <md-content layout-padding>
+	      	<md-list>
+	      	  <md-list-item ng-class="{notActive: selectedNav!=navItem.name}" ng-repeat="navItem in navItems" md-colors="{background: 'accent'}" ng-click="navigate(navItem)">
+              <md-icon md-svg-icon="{{navItem.icon}}"></md-icon>
+              <span flex> {{navItem.label}} </span>
+	      	  </md-list-item>
+	      	</md-list>
+	      </md-content>
+
+	    </md-sidenav>
+
+	    <div layout="column" flex>
+	    	<div ng-include="'views/header.html'"></div>
+		    <md-content flex layout-padding>
+		    	<div ng-view>Welcome to our home screen.</div>
+		    </md-content>
+		</div>
+	  </section>
+
+	</div>
+	<!-- Node Libraries -->
+	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+	<script type="text/javascript" src="node_modules/angular-material/angular-material.min.js"></script>
+	<script type="text/javascript" src="node_modules/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript" src="node_modules/angular-aria/angular-aria.min.js"></script>
+	<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+
+	<!-- Main Script -->
+	<script type="text/javascript" src="app.js"></script>
+
+	<!-- Controllers -->
+	<script type="text/javascript" src="controllers/base.js"></script>
+	<script type="text/javascript" src="controllers/member.js"></script>
+
+	<!-- Models -->
+	<script type="text/javascript" src="models/data.js"></script>
+	<script type="text/javascript" src="models/helper.js"></script>
+	<script type="text/javascript" src="models/member.js"></script>
+
+	<!-- Server API -->
+	<script type="text/javascript" src="models/api.js"></script>
+</body>
+</html>
