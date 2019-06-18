@@ -12,10 +12,8 @@ spa.factory("memberData",[
 
 		var setMembers = (data) => {
 			$h.printInfo(this.TAG, "Set Members Called", data.length);
-			for(var x=0; x<data.length; x++) {
-				$h.printInfo(this.TAG, "Iteration("+x+")", this.arr);
+			for(var x=0; x<data.length; x++) 
 				this.arr.push(data[x]);
-			}
 
 			$rootScope.$broadcast('membersFetched');
 		};

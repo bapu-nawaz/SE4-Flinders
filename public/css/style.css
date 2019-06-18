@@ -56,3 +56,8 @@ input.merged {
     color: white;
     padding: 3%;
 }
+
+span.md-error {
+    color: red;
+    font-size: 12px;
+}
