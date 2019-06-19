@@ -1,24 +1,27 @@
 // Helper Class
 spa.factory("H",[
-	"$mdToast", '$mdSidenav', '$timeout',
-	function ($toast, $sn, $timeout) {
+	"$mdToast", '$mdSidenav', '$timeout', '$mdDialog',
+	function ($toast, $sn, $timeout, $dialog) {
+
+		var userType;
 
 		function H() { 
-			this.userType = new Array("guest", "admin", "member");
+			userType = new Array("guest", "admin", "member");
 		};
 
-		H.prototype.printInfo = (text) => {
-			this.printInfo("NO TAG::", text);
+
+		var printInfo = (text) => {
+			this.printInfo("HELPER::", text);
 		};
-		H.prototype.printInfo = (TAG, text) => {
+		var printInfo = (TAG, text) => {
 			this.printInfo(TAG, text, "");
 		};
-		H.prototype.printInfo = (TAG, text, more) => {
+		var printInfo = (TAG, text, more) => {
 			// This will print all logs, uncomment for debugging only.
 			console.log(TAG,text,more);
 		};
 
-		H.prototype.showSimpleToast = (text) => {
+		var showSimpleToast = (text) => {
 			$toast.show(
 				$toast.simple()
 				.textContent(text)
@@ -28,27 +31,74 @@ spa.factory("H",[
 
 		};
 
-		H.prototype.openSideNav = () => {
+		var openSideNav = () => {
 			$timeout(function () {
 				$sn('left').open();
 			});
 		};
 
-		H.prototype.closeSideNav = () => {
+		var closeSideNav = () => {
 			$timeout(function () {
 				$sn('left').close();
 			});
 		};
 
-		H.prototype.getUserType = (type) => {
-			if(this.userType==undefined)
-				this.userType = new Array("guest", "admin", "member");
-			return this.userType.indexOf(type);
+		var getUserType = (type) => {
+			return userType.indexOf(type);
 		};
 
-		H.prototype.getUserAccessLevel = function(level) {
-			return this.userType[level];
+		var getUserAccessLevel = (level) => {
+			return userType[level];
 		};
+
+		var showConfirmDialog = (data, ev, success, failure) => {
+			var confirm = $mdDialog.confirm()
+							.title(data.title)
+							.textContent(data.content)
+							.ariaLabel('Confirm Dialog')
+							.targetEvent(ev)
+							.ok(data.yes)
+							.cancel(data.no)
+							.then(success, failure);
+		};
+
+		var showCustomDialog = (data, success, ev) => {
+			$dialog.show({
+				templateUrl: 'views/dialog/detailMemberDialog.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose:false,
+				fullscreen: true, // Only for -xs, -sm breakpoints.
+				locals: {"data": data},
+				controller: ['$scope', '$mdDialog', 'data', function($scope, $mdDialog, log) { 
+					$scope.data = data;
+				
+					$scope.hide = function() {
+						$mdDialog.hide();
+					};
+
+					$scope.cancel = function() {
+						$mdDialog.cancel();
+					};
+
+					$scope.done = function() {
+						$mdDialog.hide(data.member);
+					};
+
+				}]
+			})
+			.then(success);
+
+		};
+
+		H.prototype.printInfo = printInfo;
+		H.prototype.showSimpleToast = showSimpleToast;
+		H.prototype.showCustomDialog = showCustomDialog;
+		H.prototype.showConfirmDialog = showConfirmDialog;
+		H.prototype.openSideNav = openSideNav;
+		H.prototype.closeSideNav = closeSideNav;
+		H.prototype.getUserAccessLevel = getUserAccessLevel;
+		H.prototype.getUserType = getUserType;
 
 		return new H();
 

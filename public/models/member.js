@@ -1,40 +1,36 @@
 'use-strict'
 spa.factory("memberData",[
-	"$http", "$q", "H", "$rootScope", "$firebaseArray",
-	function ($http, $q, $h, $rootScope, $fbArray) {
+	"$http", "$q", "H", "$rootScope", 
+	function ($http, $q, $h, $rootScope) {
+
+		var arr;
+		var TAG;
 
 		function memberData() { 
-			this.arr = [];
-			this.TAG = "Member Model::";
+			arr = [];
+			TAG = "Member Model::";
 
-			this.fetchAllMembers(this.arr);
+			fetchAllMembers();
 		};
 
-		var setMembers = (data) => {
-			$h.printInfo(this.TAG, "Set Members Called", data.length);
-			for(var x=0; x<data.length; x++) 
-				this.arr.push(data[x]);
-
-			$rootScope.$broadcast('membersFetched');
+		var getAllMembers = () => {
+			return arr;
 		};
 
-		memberData.prototype.getAllMembers = (first_argument) => {
-			return this.arr;
-		};
+		var fetchAllMembers = () => {
+			var ref = firebase.database().ref('member');
 
-		memberData.prototype.fetchAllMembers = (arr) => {
-			if(this.arr==undefined) 
-				this.arr = arr;
-			$h.printInfo(this.TAG, "Get Data Called", this.arr);
-			var ref = firebase.database().ref().child('member');
-
-			$fbArray(ref).$loaded().then( res => {
-				$h.printInfo(this.TAG, "DataLoaded-Response:",res);
-				setMembers(res);
+			ref.once('value').then( res => {
+				$h.printInfo(TAG, "DataLoaded-Response:", res.numChildren());
+				arr = res.val();
+				$rootScope.$broadcast('membersFetched');
 			}, err => {
-				printInfo("DataLoaded-Error:",err);
+				$h.printInfo("DataLoaded-Error:",err);
 			});
 		};
+
+		memberData.prototype.getAllMembers = getAllMembers;
+		memberData.prototype.fetchAllMembers = fetchAllMembers;
 
 		return new memberData();
 

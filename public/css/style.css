@@ -56,8 +56,19 @@ input.merged {
     color: white;
     padding: 3%;
 }
+input.merged::placeholder {
+    color: rgb(180, 219, 251);
+}
 
 span.md-error {
     color: red;
     font-size: 12px;
+}
+
+table > tbody > tr > td{
+    padding: 10px 0px;
+}
+
+table > tbody > tr:nth-child(2n-1){
+    background: #000;
 }

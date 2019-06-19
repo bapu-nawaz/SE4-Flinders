@@ -32,10 +32,8 @@ spa.controller('loginCTRL', [
     			setError("All fields are required!");
     			return;
     		}
-    		var username = "user";
-    		// name = "finnis";
-    		$h.printInfo(TAG, "Credentials Provided:", $scope.login);
-    		var ref = firebase.database().ref(username);
+
+    		var ref = firebase.database().ref("user");
 			ref.once("value")
 			  .then(function(snapshot) {
 			    var a = snapshot.numChildren(); // 1 ("name")
@@ -55,6 +53,8 @@ spa.controller('loginCTRL', [
 			    });
 			  });
     	};
+
+    	$location.path('member/1');
 
 	}
 ]);
