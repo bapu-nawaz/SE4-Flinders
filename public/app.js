@@ -65,6 +65,6 @@ var spa = angular
 				      hue: '200' // Default is '800'
 				    });
 
-    			$qp.errorOnUnhandledRejections(false);
+    			// $qp.errorOnUnhandledRejections(false);
 		}
 	]);

@@ -1,0 +1,30 @@
+<md-dialog aria-label="Member">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>{{data.title}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-src="img/icons/clear.svg" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content>
+    <div class="md-dialog-content">
+      <table>
+        <tbody>
+          <tr ng-repeat="(key, value) in data.member">
+            <td> {{key}} </td>
+            <td> <input ng-show="data.edit" ng-model="value"> <span ng-hide="data.edit"> {{value}} </span> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </md-dialog-content>
+
+  <md-dialog-actions layout="row">
+      <md-button class="md-raised md-primary" ng-click="done()">
+       Close
+      </md-button>
+    </md-dialog-actions>
+</md-dialog>
