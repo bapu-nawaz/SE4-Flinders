@@ -1,0 +1,41 @@
+<div layout="row">
+  <div flex="25"></div>
+  <md-card flex>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline"> Login </span>
+        <span class="md-subhead"> Please enter your credentials to login as Member </span>
+        <span class="md-error" ng-show="error.state"> {{error.msg}} </span>
+      </md-card-title-text>
+    </md-card-title>
+
+    <form name="loginForm">
+      <md-card-content layout="column" layout-align="stretch center">
+        <md-input-container>
+          <label> Username </label>
+          <input ng-model="login.name" required id="username" name="username" />
+          <div ng-messages="loginForm.username.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container>
+          <label> Password </label>
+          <input ng-model="login.pass" required type="password" name="password" />
+          <div ng-messages="loginForm.password.$error">
+            <div ng-message="required">This is required.</div>
+            <!-- <div ng-message="unknown">There seems to be a problem with your credentials... Contact an Admin.</div> -->
+          </div>
+        </md-input-container>
+
+      </md-card-content>
+
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-accent md-raised" type="submit" ng-click="signIn()"> Login as Member </md-button>
+        <md-button class="md-accent" ng-click="loginGuest()"> Continue as Guest </md-button>
+      </md-card-actions>
+    </form>
+
+  </md-card>
+  <div flex="25"></div>
+</div>

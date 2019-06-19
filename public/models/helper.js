@@ -4,6 +4,7 @@ spa.factory("H",[
 	function ($toast, $sn, $timeout) {
 
 		function H() { 
+			this.userType = new Array("guest", "admin", "member");
 		};
 
 		H.prototype.printInfo = (text) => {
@@ -37,6 +38,16 @@ spa.factory("H",[
 			$timeout(function () {
 				$sn('left').close();
 			});
+		};
+
+		H.prototype.getUserType = (type) => {
+			if(this.userType==undefined)
+				this.userType = new Array("guest", "admin", "member");
+			return this.userType.indexOf(type);
+		};
+
+		H.prototype.getUserAccessLevel = function(level) {
+			return this.userType[level];
 		};
 
 		return new H();

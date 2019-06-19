@@ -17,15 +17,14 @@ var spa = angular
 			$qp) {
 
 				// defining screens here
+				$rp.otherwise('login');
 				$rp.when('/login', {
 					templateUrl: 'views/login.html',
 					controller: 'loginCTRL'
-				})
-				.otherwise({
-					template: '<h3> Welcome to the Parliament SA. </h3>'
 				});
 
-				$rp.when('/member', {
+				// $rp.when('member','member/0');
+				$rp.when('/member/:type', {
 					templateUrl: 'views/member.html',
 					controller: 'memberCTRL'
 				});
