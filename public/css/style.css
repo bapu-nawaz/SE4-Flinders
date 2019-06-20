@@ -72,3 +72,9 @@ table > tbody > tr > td{
 table > tbody > tr:nth-child(2n-1){
     background: #000;
 }
+
+img.memberFace {
+    margin: 0px 30%;
+    border-radius: 50px;
+    border: 1px solid;
+}

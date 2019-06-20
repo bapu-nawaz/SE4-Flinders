@@ -3,7 +3,7 @@
 var spa = angular
 	
 	.module('parliament', [			// add name for your app (this should be same as in package.json && ng-app in index.html)
-		'ngRoute',			    // add modules here and their js files in index.html to use them
+		'ngRoute',			    	// add modules here and their js files in index.html to use them
 		'ngMaterial',
 		'firebase'
 	])

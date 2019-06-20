@@ -4,10 +4,10 @@ spa.controller('baseCTRL', [
 	function($scope, $location, $h) {
 
 		$scope.navItems = [{
-			name: 'council',
-			label: 'Council',
-			icon: 'img/icons/council.svg',
-			pageContent: 'Legislative Council'
+			name: 'committee',
+			label: 'Committee',
+			icon: 'img/icons/committee.svg',
+			pageContent: 'Committee'
 		},{
 			name: 'member',
 			label: 'Members',
