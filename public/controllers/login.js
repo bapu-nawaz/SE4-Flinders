@@ -42,9 +42,12 @@ spa.controller('loginCTRL', [
 			    $h.printInfo(TAG, b);
 			    snapshot.forEach(function(childSnapshot){
 			    	if( $scope.login.name == childSnapshot.val().name ) 
-			    		if( $scope.login.pass == childSnapshot.val().pass )
-				    		$location.path('member/'+$h.getUserType(childSnapshot.val().type));
-				    	else {
+			    		if( $scope.login.pass == childSnapshot.val().pass ) 
+			    			firebase.auth().signInAnonymously()
+							.then(e => {
+								$location.path('member/'+$h.getUserType(childSnapshot.val().type));
+							}, er => { });
+			    		else {
 				    		setError("There seems to be a problem with your Credentials. Please contact an Admin.");
 				    		return;
 				    	}

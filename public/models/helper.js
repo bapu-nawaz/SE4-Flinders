@@ -51,15 +51,16 @@ spa.factory("H",[
 			return userType[level];
 		};
 
-		var showConfirmDialog = (data, ev, success, failure) => {
-			var confirm = $mdDialog.confirm()
+		var showConfirmDialog = (data, success, failure, ev) => {
+			var confirm = $dialog.confirm()
 							.title(data.title)
 							.textContent(data.content)
 							.ariaLabel('Confirm Dialog')
 							.targetEvent(ev)
 							.ok(data.yes)
-							.cancel(data.no)
-							.then(success, failure);
+							.cancel(data.no);
+			$dialog.show(confirm)
+				.then(success, failure);
 		};
 
 		var showCustomDialog = (data, success, ev) => {
@@ -82,6 +83,15 @@ spa.factory("H",[
 					};
 
 					$scope.done = function() {
+						if(data.edit) {
+							data.member.name = $scope.updateMemberForm.name.$viewValue;
+							data.member.date_elected = $scope.updateMemberForm.date_elected.$viewValue;
+							data.member.electorate = $scope.updateMemberForm.electorate.$viewValue;
+							data.member.email = $scope.updateMemberForm.email.$viewValue;
+							data.member.house = $scope.updateMemberForm.house.$viewValue;
+							data.member.political_party = $scope.updateMemberForm.political_party.$viewValue;
+							data.member.position = $scope.updateMemberForm.position.$viewValue;
+						}
 						$mdDialog.hide(data.member);
 					};
 

@@ -30,27 +30,26 @@
 			</md-list-item>
 		</md-list>		
 	</md-card-content>						<!-- // END Guest -->		   
-	<md-card-content ng-if="userType!=0">
+	<md-card-content ng-if="userType!=0" ng-init="order='email'">
 		<table flex width="100%">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Party</th>
-					<th>Date Elected</th>
+					<th ng-click="order='name'">Name</th>
+					<th ng-click="order='email'">Email</th>
+					<th ng-click="order='political_party'">Party</th>
+					<th ng-click="order='date_elected'">Date Elected</th>
 					<th ng-if="userType==1">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="member in allMembers | filter: memberFilter | orderBy: 'email'">
-					<td> {{member.name}} </td>
-					<td> {{member.email}} </td>
-					<td> {{member.political_party}} </td>
-					<td> {{member.date_elected}} </td>
+				<tr ng-repeat="member in allMembers | filter: memberFilter | orderBy: order" ng-if="!member.isDeleted">
+					<td ng-click="openDetailed(member)"> {{member.name}} </td>
+					<td ng-click="openDetailed(member)"> {{member.email}} </td>
+					<td ng-click="openDetailed(member)"> {{member.political_party}} </td>
+					<td ng-click="openDetailed(member)"> {{member.date_elected}} </td>
 					<td ng-if="userType==1">
-						<md-button class="md-icon-button md-raised md-accent" ng-click="openDetailed(member)"><md-icon md-svg-icon="img/icons/show.svg"></md-icon></md-button>
 						<md-button class="md-icon-button md-raised md-accent" ng-click="editDetail(member)"><md-icon md-svg-icon="img/icons/edit.svg"></md-icon></md-button>
-						<md-button class="md-icon-button md-raised md-accent" ng-click="deleteMember"><md-icon md-svg-icon="img/icons/delete.svg"></md-icon></md-button>
+						<md-button class="md-icon-button md-raised md-warn" ng-click="deleteMember(member)"><md-icon md-svg-icon="img/icons/delete.svg"></md-icon></md-button>
 					</td>
 				</tr>
 			</tbody>
