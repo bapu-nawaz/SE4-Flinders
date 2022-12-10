@@ -15,7 +15,7 @@
     "angular-aria": "^1.7.5",
     "angular-material": "^1.1.10",
     "angular-route": "^1.7.5",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "fs": "0.0.1-security"
   }
 }
